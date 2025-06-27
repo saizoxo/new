@@ -4,15 +4,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const bgMusic = document.getElementById("bgMusic");
 
   const letterContentMap = {
-    1: {
-      title: "open when you're overthinking",
-      body: `i know your mind gets loud and heavy and messy sometimes like a hundred voices pulling you in different directions and i know how exhausting it is to keep pretending everything is okay while your thoughts keep crashing into each other but please stay here with me stay grounded stay breathing you are not a burden you are not broken you are just feeling too much in a world that understands too little and that’s okay i’m not going anywhere i’m staying right here and i’m holding you through all of it and i believe in your calm i believe in your light even if right now all you feel is the dark`
-    },
-    2: {
-      title: "open when you're feeling angry",
-      body: `i know it feels like everything is pushing your limits and your chest is burning and your head is heavy and you want to explode or disappear or cry and scream at the same time but breathe with me okay stay with me because your anger doesn’t make you bad your emotions don’t make you wrong you’re just overwhelmed and that’s not your fault you are still loved you are still understood even when you don’t know how to explain the fire inside`
-    },
-    // 💌 Add more letters 3–20 below...
+    1: { title: "open when you're overthinking", body: "i know your mind gets loud..." },
+    2: { title: "open when you're feeling angry", body: "i know it feels like everything is pushing..." },
+    3: { title: "open when you're sad for no reason", body: "some days just feel heavy and confusing..." },
+    4: { title: "open when you're tired of everything", body: "rest is not weakness. pause and breathe..." },
+    5: { title: "open when you feel like no one understands", body: "you don’t have to explain everything..." },
+    6: { title: "open when you're missing me", body: "i’m still with you, even if you can’t see me..." },
+    7: { title: "open when you can't sleep", body: "close your eyes, love. my voice is your lullaby..." },
+    8: { title: "open when you're overthinking at night", body: "night makes everything louder, but you’re not alone..." },
+    9: { title: "open when you're scared of the future", body: "the future can wait. come back to now..." },
+    10: { title: "open when you're feeling numb", body: "even numbness is a feeling. and it too will pass..." },
+    11: { title: "open when you feel alone even with people around", body: "i see you. fully. clearly. always..." },
+    12: { title: "open when you're comparing yourself", body: "your journey isn’t supposed to match anyone’s..." },
+    13: { title: "open when you're done pretending to be okay", body: "you don’t have to fake strength with me..." },
+    14: { title: "open when you think you're not good enough", body: "you are. more than you realize..." },
+    15: { title: "open when you're frustrated for no reason", body: "it’s okay to not know why. just feel..." },
+    16: { title: "open when you feel like giving up", body: "not now. not yet. please, hold on..." },
+    17: { title: "open when you think I don't care", body: "i care so deeply it aches..." },
+    18: { title: "open when everything feels fake", body: "what’s real is right here. this love..." },
+    19: { title: "open when you need someone but can't talk to anyone", body: "this letter is my voice hugging you..." },
+    20: { title: "open when you just want peace", body: "shhh. breathe. let me be your stillness..." }
   };
 
   const envelopeStage = new Map();
@@ -21,11 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
   envelopes.forEach((env) => {
     const dataId = parseInt(env.getAttribute("data-id"));
     const content = letterContentMap[dataId];
+    const placeholder = content?.title || "I'll write it";
 
-    if (content && content.title) {
-      env.setAttribute("data-placeholder", content.title);
-    }
-
+    env.setAttribute("data-placeholder", placeholder);
     env.textContent = "";
     envelopeStage.set(env, 0);
 
@@ -41,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentlyOpenEnv.textContent = "";
         const prevId = parseInt(currentlyOpenEnv.getAttribute("data-id"));
         const prevContent = letterContentMap[prevId];
-        currentlyOpenEnv.setAttribute("data-placeholder", prevContent?.title || "");
+        currentlyOpenEnv.setAttribute("data-placeholder", prevContent?.title || "I'll write it");
         envelopeStage.set(currentlyOpenEnv, 0);
       }
 
@@ -63,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const paper = document.createElement("div");
         paper.className = "paper";
         paper.innerHTML = `
+          <p>${content?.title || "a letter for you"}</p>
           <p>${content?.body || "this is just a little piece of my heart for you"}</p>
         `;
         env.parentNode.insertBefore(paper, env.nextSibling);
