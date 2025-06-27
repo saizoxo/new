@@ -1,0 +1,124 @@
+body {
+  margin: 0;
+  background: #0d0d0d url('../assets/bg.jpg') no-repeat center center/cover;
+  color: #fffefc;
+  font-family: 'Special Elite', cursive;
+  overflow-x: hidden;
+}
+
+.animated-string {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    #ff4e50 0%, #ff4e50 20%,
+    transparent 20%, transparent 40%
+  );
+  animation: pulse 2s linear infinite;
+  transform: translateX(-50%);
+  z-index: 1;
+  opacity: 0.8;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.letter-entry {
+  position: relative;
+  width: 100%;
+  padding: 100px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.letter-entry.right {
+  justify-content: flex-end;
+}
+
+.envelope {
+  position: relative;
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  max-width: 300px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+.envelope:hover {
+  transform: translateY(-5px);
+}
+
+.paper-slide {
+  pointer-events: none;
+}
+
+.tap-hint {
+  font-size: 0.75rem;
+  color: #ffb3b3;
+  margin-bottom: 5px;
+}
+
+.paper-mini {
+  font-size: 1.2rem;
+  color: #fffefc;
+}
+
+.paper {
+  background: #fffefc;
+  color: #222;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  font-family: 'Special Elite', cursive;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  margin-top: 10px;
+}
+
+.paper.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.fullscreen-hint {
+  font-size: 0.8rem;
+  text-align: right;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.mute-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
+  background: #ff4e50;
+  color: #fffefc;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-family: 'Special Elite', cursive;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+@media (max-width: 768px) {
+  .letter-entry {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .envelope {
+    max-width: 90%;
+  }
+}
