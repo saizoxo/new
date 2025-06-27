@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const letterContentMap = {
     1: {
       title: "open when you're overthinking",
-      body: i know your mind gets loud and heavy and messy sometimes like a hundred voices pulling you in different directions and i know how exhausting it is to keep pretending everything is okay while your thoughts keep crashing into each other but please stay here with me stay grounded stay breathing you are not a burden you are not broken you are just feeling too much in a world that understands too little and that’s okay i’m not going anywhere i’m staying right here and i’m holding you through all of it and i believe in your calm i believe in your light even if right now all you feel is the dark
+      body: `i know your mind gets loud and heavy and messy sometimes like a hundred voices pulling you in different directions and i know how exhausting it is to keep pretending everything is okay while your thoughts keep crashing into each other but please stay here with me stay grounded stay breathing you are not a burden you are not broken you are just feeling too much in a world that understands too little and that’s okay i’m not going anywhere i’m staying right here and i’m holding you through all of it and i believe in your calm i believe in your light even if right now all you feel is the dark`
     },
     2: {
       title: "open when you're feeling angry",
-      body: i know it feels like everything is pushing your limits and your chest is burning and your head is heavy and you want to explode or disappear or cry and scream at the same time but breathe with me okay stay with me because your anger doesn’t make you bad your emotions don’t make you wrong you’re just overwhelmed and that’s not your fault you are still loved you are still understood even when you don’t know how to explain the fire inside
+      body: `i know it feels like everything is pushing your limits and your chest is burning and your head is heavy and you want to explode or disappear or cry and scream at the same time but breathe with me okay stay with me because your anger doesn’t make you bad your emotions don’t make you wrong you’re just overwhelmed and that’s not your fault you are still loved you are still understood even when you don’t know how to explain the fire inside`
     },
     // ... up to 20 (unchanged)
   };
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const envelopeStage = new Map();
 
   envelopes.forEach((env) => {
-    envelopeStage.set(env, 0); // Initialize stage
+    envelopeStage.set(env, 0);
     const placeholder = env.getAttribute("data-placeholder") || "Open when you're sad";
 
     env.textContent = "";
