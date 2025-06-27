@@ -3,48 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Letters from Vera</title>
+  <title>still here</title>
 
-  <!-- Favicon & Fonts -->
-  <link rel="icon" href="assets/favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+  <!-- Fonts & Favicon -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="home.css" />
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+
+  <!-- Scripts -->
+  <script src="js/home.js" defer></script>
 </head>
+
 <body class="unlocked">
+  <!-- 🎵 Background Music -->
   <audio id="bgMusic" src="assets/bg-music.mp3" autoplay loop></audio>
   <button id="mute-btn" class="mute-button">mute</button>
 
+  <!-- 💌 Letters Timeline -->
   <div class="letters-timeline">
     <div class="animated-string"></div>
+
     <div class="letter-list">
-      <!-- Letter entries -->
-      <div class="letter-entry left">
-        <div class="envelope" data-id="1">
-          <span class="open-when">open when you're sad</span>
-          <span class="second-label">“even storms rest...”</span>
-          <div class="paper">
-            <p>Hey you, it’s okay to not be okay. Close your eyes, take a deep breath, and let my love wrap around you like a warm hoodie. You’re safe here. 🤍</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="letter-entry right">
-        <div class="envelope" data-id="2">
-          <span class="open-when">open when you miss me</span>
-          <span class="second-label">“i miss you too”</span>
-          <div class="paper">
-            <p>If you’re reading this, it means I’m hugging you in spirit. Maybe we’re far apart now, but our hearts? Always holding hands. 🫂</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Add more letters as needed -->
+      <!-- 🔁 20 Hanging Letters -->
+      <div class="letter-entry left"><div class="envelope" data-id="1" data-placeholder="open when you're sad"></div></div>
+      <div class="letter-entry right"><div class="envelope" data-id="2" data-placeholder="read when you miss me"></div></div>
+      <div class="letter-entry left"><div class="envelope" data-id="3" data-placeholder="remember this?"></div></div>
+      <div class="letter-entry right"><div class="envelope" data-id="4" data-placeholder="when you need a smile"></div></div>
+      <div class="letter-entry left"><div class="envelope" data-id="5" data-placeholder="when you can't sleep"></div></div>
+      <div class="letter-entry right"><div class="envelope" data-id="6" data-placeholder="i wrote this for you"></div></div>
+      <div class="letter-entry left"><div class="envelope" data-id="7" data-placeholder="when life gets tough"></div></div>
+      <div class="letter-entry right"><div class="envelope" data-id="8" data-placeholder="the silly letter"></div></div>
+      <div class="letter-entry left"><div class="envelope" data-id="9" data-placeholder="💌"></div></div>
+      <div class="letter-entry right"><div class="envelope" data-id="10" data-placeholder="nostalgia trip"></div></div>
+      <div class="letter-entry left"><div class="envelope" data-id="11" data-placeholder="when you're angry"></div></div>
+      <div class="letter-entry right"><div class="envelope" data-id="12" data-placeholder="a tiny surprise"></div></div>
+      <div class="letter-entry left"><div class="envelope" data-id="13" data-placeholder="just because"></div></div>
+      <div class="letter-entry right"><div class="envelope" data-id="14" data-placeholder="secret memory"></div></div>
+      <div class="letter-entry left"><div class="envelope" data-id="15" data-placeholder="open me slowly"></div></div>
+      <div class="letter-entry right"><div class="envelope" data-id="16" data-placeholder="because i care"></div></div>
+      <div class="letter-entry left"><div class="envelope" data-id="17" data-placeholder="read this at night"></div></div>
+      <div class="letter-entry right"><div class="envelope" data-id="18" data-placeholder="shhh… it's a secret"></div></div>
+      <div class="letter-entry left"><div class="envelope" data-id="19" data-placeholder="when you're curious"></div></div>
+      <div class="letter-entry right"><div class="envelope" data-id="20" data-placeholder="one last note"></div></div>
     </div>
   </div>
-
-  <script src="home.js"></script>
 </body>
 </html>
