@@ -1,23 +1,18 @@
-document.querySelectorAll('.envelope').forEach((env) => {
-  env.addEventListener('click', () => {
-    const paper = env.querySelector('.paper');
-    paper.classList.toggle('show');
+document.addEventListener('DOMContentLoaded', () => {
+  const envelopes = document.querySelectorAll('.envelope');
+  const music = document.getElementById('bgMusic');
+  const muteBtn = document.getElementById('mute-btn');
+
+  envelopes.forEach(envelope => {
+    const paper = envelope.querySelector('.paper');
+    envelope.addEventListener('click', () => {
+      envelope.classList.toggle('open');
+      paper.classList.toggle('show');
+    });
   });
 
-  env.querySelector('.paper').addEventListener('click', (e) => {
-    e.stopPropagation();
-    const paper = e.currentTarget;
-    if (!document.fullscreenElement) {
-      paper.requestFullscreen();
-    } else {
-      document.exitFullscreen();
-    }
+  muteBtn.addEventListener('click', () => {
+    music.muted = !music.muted;
+    muteBtn.textContent = music.muted ? 'unmute' : 'mute';
   });
 });
-
-const muteBtn = document.getElementById("mute-btn");
-muteBtn.onclick = () => {
-  const music = document.getElementById("bgMusic");
-  music.muted = !music.muted;
-  muteBtn.textContent = music.muted ? "unmute" : "mute";
-};
