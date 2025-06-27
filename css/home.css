@@ -72,6 +72,23 @@ body {
   color: #fffefc;
 }
 
+.paper-tab {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: #f5eee3;
+  color: #222;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: 'Special Elite', cursive;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.paper-tab:hover {
+  background: #fff8e9;
+}
+
 .paper {
   background: #fffefc;
   color: #222;
@@ -110,6 +127,15 @@ body {
   font-family: 'Special Elite', cursive;
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* NEW CONTROL CLASSES */
+.hidden {
+  display: none;
+}
+
+.step-1, .step-2, .step-3 {
+  transition: all 0.3s ease;
 }
 
 @media (max-width: 768px) {
