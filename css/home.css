@@ -36,7 +36,7 @@ body {
   margin: 0 auto;
 }
 
-/* === MAIN CENTER STRING === */
+/* === CENTER STRING === */
 .animated-string {
   position: absolute;
   top: 0;
@@ -61,7 +61,7 @@ body {
   100% { background-position: 0 100px; }
 }
 
-/* === LETTER STRUCTURE === */
+/* === LETTER LIST === */
 .letter-list {
   position: relative;
   z-index: 2;
@@ -72,15 +72,16 @@ body {
   align-items: center;
 }
 
+/* === EACH LETTER ENTRY === */
 .letter-entry {
   position: relative;
-  z-index: 2;
-  width: 100%;
   display: flex;
   justify-content: center;
+  z-index: 2;
+  width: 100%;
 }
 
-/* === STRING CONNECTOR TO ENVELOPE === */
+/* === CONNECTOR STRING TO ENVELOPE === */
 .letter-entry::before {
   content: '';
   position: absolute;
@@ -111,14 +112,14 @@ body {
   cursor: pointer;
   transition: transform 0.3s ease;
   overflow: hidden;
-  z-index: 3;
   transform: rotate(-2deg);
+  z-index: 3;
 }
 .letter-entry.right .envelope {
   transform: rotate(2deg);
 }
 
-/* Flap */
+/* === FLAP === */
 .envelope::before {
   content: '';
   position: absolute;
@@ -131,7 +132,7 @@ body {
   z-index: 2;
 }
 
-/* Back Text Placeholder */
+/* === PLACEHOLDER TEXT === */
 .envelope::after {
   content: attr(data-placeholder);
   position: absolute;
@@ -145,12 +146,12 @@ body {
   pointer-events: none;
 }
 
-/* Hover effect */
+/* === ENVELOPE HOVER === */
 .envelope:hover {
   transform: scale(1.05) rotate(0deg);
 }
 
-/* === PAPER === */
+/* === LETTER MESSAGE === */
 .paper {
   margin-top: 20px;
   padding: 20px;
