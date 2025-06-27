@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>still here</title>
-
-  <!-- Fonts & Favicon -->
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet" />
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/home.css" />
-
-  <!-- Scripts -->
-  <script src="js/home.js" defer></script>
-
-  <style>
+  <title>still here</title>  <!-- Fonts & Favicon -->  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />  <!-- Stylesheets -->  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />  <!-- Scripts -->  <script src="js/home.js" defer></script>  <style>
     body {
       font-family: 'Special Elite', cursive;
       background: url('assets/bg.jpg') no-repeat center center fixed;
@@ -33,6 +21,8 @@
       justify-content: center;
       position: relative;
       margin-bottom: 180px;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
     .letter-entry.left .envelope {
@@ -61,22 +51,12 @@
       transform: scale(1.05);
     }
 
-    .paper-slide {
+    .paper-slide, .paper {
       display: none;
-      font-size: 12px;
-      color: #888;
-      margin-top: 8px;
-      font-style: italic;
     }
 
-    .paper-mini {
-      font-weight: bold;
-      color: #444;
-      font-size: 15px;
-      margin-top: 4px;
-    }
-
-    .paper {
+    .paper.show {
+      display: block;
       background: #fffefc;
       color: #222;
       margin-top: 20px;
@@ -87,15 +67,10 @@
       width: fit-content;
       line-height: 1.6;
       transition: transform 0.3s ease, opacity 0.3s ease;
-      transform: scale(0.8);
-      opacity: 0;
+      transform: scale(1.05);
+      opacity: 1;
       font-size: 15px;
       font-family: 'Special Elite', cursive;
-    }
-
-    .paper.show {
-      transform: scale(1);
-      opacity: 1;
     }
 
     @keyframes floatLeft {
@@ -120,99 +95,13 @@
       cursor: pointer;
       font-family: 'Special Elite', cursive;
     }
+  </style></head>
+<body class="unlocked">  <!-- 🎵 Background Music --><audio id="bgMusic" src="assets/bg-music.mp3" autoplay loop></audio> <button id="mute-btn" class="mute-button">mute</button>
 
-    .fullscreen-hint {
-      font-size: 10px;
-      color: #aaa;
-      margin-bottom: 8px;
-    }
-
-    .tap-hint {
-      font-size: 10px;
-      color: #aaa;
-    }
-
-  </style>
-</head>
-<body class="unlocked">
-
-  <!-- 🎵 Background Music -->
-  <audio id="bgMusic" src="assets/bg-music.mp3" autoplay loop></audio>
-  <button id="mute-btn" class="mute-button">mute</button>
-
-  <!-- 💌 Letters Timeline -->
-  <div class="letters-timeline">
+  <!-- 💌 Letters Timeline -->  <div class="letters-timeline">
     <div class="letter-list">
-
-      <!-- ✉️ Repeated Letter Entries -->
-      <!-- Tip: Easily add or remove more using same format -->
-      <div class="letter-entry left">
-        <div class="envelope" data-id="1" data-placeholder="open when you're sad">
-          <div class="paper-slide">
-            <div class="tap-hint">tap to read</div>
-            <div class="paper-mini">“even storms rest...”</div>
-          </div>
-          <div class="paper">
-            <div class="fullscreen-hint">click to full screen</div>
-            <p>Hey you, it’s okay to not be okay. Close your eyes, take a deep breath, and let my love wrap around you like a warm hoodie. You’re safe here. 🤍</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="letter-entry right">
-        <div class="envelope" data-id="2" data-placeholder="read when you miss me">
-          <div class="paper-slide">
-            <div class="tap-hint">tap to read</div>
-            <div class="paper-mini">“i miss you too”</div>
-          </div>
-          <div class="paper">
-            <div class="fullscreen-hint">click to full screen</div>
-            <p>If you’re reading this, it means I’m hugging you in spirit. Maybe we’re far apart now, but our hearts? Always holding hands. 🫂</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="letter-entry left">
-        <div class="envelope" data-id="3" data-placeholder="remember this?">
-          <div class="paper-slide">
-            <div class="tap-hint">tap to read</div>
-            <div class="paper-mini">“hehehe…”</div>
-          </div>
-          <div class="paper">
-            <div class="fullscreen-hint">click to full screen</div>
-            <p>Remember that one moment we laughed so hard it hurt? Yeah, that one. Replay it in your mind right now. That’s our magic. Still makes me giggle. 🐸💫</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="letter-entry right">
-        <div class="envelope" data-id="4" data-placeholder="when you need a smile">
-          <div class="paper-slide">
-            <div class="tap-hint">tap to read</div>
-            <div class="paper-mini">“smile, pookie”</div>
-          </div>
-          <div class="paper">
-            <div class="fullscreen-hint">click to full screen</div>
-            <p>This one is short: I love your smile. Show me? There it is 😁 — I felt it from here. You’re beautiful, always have been, always will be.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="letter-entry left">
-        <div class="envelope" data-id="5" data-placeholder="i wrote this for you">
-          <div class="paper-slide">
-            <div class="tap-hint">tap to read</div>
-            <div class="paper-mini">“mine. yours. always.”</div>
-          </div>
-          <div class="paper">
-            <div class="fullscreen-hint">click to full screen</div>
-            <p>I wrote this because you’re my favorite story. My plot twist. My soft ending. I love you, not just today — but in every version of forever. 💌</p>
-          </div>
-        </div>
-      </div>
-
+      <!-- 10 dynamic envelopes -->
+      <!-- These will be generated by JS (home.js) -->
     </div>
-  </div>
-
-</body>
+  </div></body>
 </html>
