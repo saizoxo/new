@@ -86,8 +86,10 @@ body: breathe with me in this moment let go of everything that’s not yours to 
 }
 };
 
+const envelopeStage = new Map();
+
 envelopes.forEach((env) => {
-let stage = 0; // 0 = back of envelope with triangle flap, 1 = flipped front, 2 = opened with paper, 3 = zoomed paper
+  envelopeStage.set(env, 0); // 0 = back of envelope with triangle flap, 1 = flipped front, 2 = opened with paper, 3 = zoomed paper
 const placeholder = env.getAttribute("data-placeholder") || "Open when you're sad";
 
 // Start with just the back showing  
@@ -96,11 +98,11 @@ env.setAttribute("data-placeholder", placeholder);
 
 env.addEventListener("click", () => {  
   // Stage 0 → Flip envelope  
-  if (stage === 0) {  
+  if (envelopeStage.get(env) === 0 {  
     env.classList.add("flipped");  
     env.textContent = "Letter from Vera 💌";  
     env.setAttribute("data-placeholder", "");  
-    stage = 1;  
+    envelopeStage.set(env, 1);  
     return;  
   }  
 
@@ -122,7 +124,7 @@ paper.innerHTML = `
 `;  
         env.parentNode.insertBefore(paper, env.nextSibling);  
         setTimeout(() => paper.classList.add("show"), 100);  
-        stage = 2;  // Stage 2 → Zoom in on paper  
+        envelopeStage.set(env, 1);  // Stage 2 → Zoom in on paper  
     paper.addEventListener("click", () => {  
       if (stage === 2) {  
         paper.style.transform = "scale(1.15)";  
