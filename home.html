@@ -15,19 +15,27 @@
   <div class="animated-string"></div>
 
   <div class="letter-entry left">
-    <div class="envelope" data-id="1" data-placeholder="open when you're sad">
-      <div class="paper-slide">
+    <div class="envelope" data-id="1">
+      
+      <!-- STEP 1: Envelope (tap to reveal tab) -->
+      <div class="paper-slide step-1">
         <div class="tap-hint">tap to read</div>
         <div class="paper-mini">“even storms rest…”</div>
       </div>
-      <div class="paper">
+
+      <!-- STEP 2: Tab (appears after step 1) -->
+      <div class="paper-tab step-2 hidden">open me?</div>
+
+      <!-- STEP 3: Main Letter (appears after clicking tab) -->
+      <div class="paper step-3 hidden">
         <div class="fullscreen-hint">click to full screen</div>
         <p>Hey you, it’s okay to not be okay. Close your eyes, take a deep breath, and let my love wrap around you like a warm hoodie. You’re safe here. 🤍</p>
       </div>
+
     </div>
   </div>
 
-  <!-- Duplicate more letter-entry divs for other letters -->
+  <!-- Add more .letter-entry divs as needed for more letters -->
 
   <script src="js/home.js"></script>
 </body>
