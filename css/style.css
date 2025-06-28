@@ -1,169 +1,363 @@
-/* ======== GLOBAL STYLES ======== */
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
-  color: white;
-  overflow: hidden;
-  touch-action: manipulation; /* Allows browser-optimized touch events */
+/* ===== SYSTEM SETUP ===== */
+:root {
+    --primary: #ff758c;
+    --secondary: #ff7eb3;
+    --background: #1a1a2e;
+    --surface: #16213e;
+    
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    
+    --error: #ff6b6b;
+    --success: #4cc7a3;
+    
+    --border-radius: 14px;
+    --border-radius-sm: 8px;
+    
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
+    --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    
+    --duration-fast: 0.15s;
+    --duration-normal: 0.3s;
+    --duration-slow: 0.6s;
+    
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ======== MAIN CONTAINER ======== */
+/* ===== BASE STYLES ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--background);
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ===== PRELOADER ===== */
+#preloader {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--duration-slow) var(--ease-out), visibility 0s linear 0s;
+}
+
+#preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--duration-slow) var(--ease-out), visibility 0s linear var(--duration-slow);
+}
+
+.loader {
+    animation: pulse 1.5s var(--ease-in-out) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* ===== PARTICLE BACKGROUND ===== */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg, var(--background), var(--surface));
+}
+
+/* ===== MAIN CONTAINER ===== */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
-  opacity: 1;
-  transition: opacity 1.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    perspective: 1000px;
+    opacity: 1;
+    transition: opacity var(--duration-slow) var(--ease-out);
 }
 
-/* ======== LOGIN BOX (WITH TOUCH SUPPORT) ======== */
+.container.fade-out {
+    opacity: 0;
+}
+
+/* ===== 3D LOGIN BOX ===== */
 .login-box {
-  position: relative;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 45px 30px;
-  border-radius: 18px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
-  opacity: 0;
-  transform-style: preserve-3d;
-  transform-origin: center center;
-  perspective: 1000px;
-  will-change: transform;
-  touch-action: none !important; /* Critical for custom touch handling */
-  animation: fadeInLogin 1s ease forwards 0.5s;
-  transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.1);
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    transform-style: preserve-3d;
+    will-change: transform;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 
+        transform var(--duration-normal) var(--ease-out),
+        box-shadow var(--duration-fast) var(--ease),
+        opacity var(--duration-slow) var(--ease-out);
+    animation: fadeInUp var(--duration-slow) var(--ease-out) 0.5s forwards;
+    touch-action: none;
+    overflow: hidden;
+    z-index: 10;
 }
 
-/* ======== FORM ELEMENTS ======== */
+.login-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.02) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    z-index: -1;
+    pointer-events: none;
+    animation: shine 8s ease-in-out infinite;
+}
+
+@keyframes shine {
+    0%, 100% { transform: translateX(-70%) rotate(30deg); }
+    50% { transform: translateX(70%) rotate(30deg); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Login box content */
+.display-area {
+    margin-bottom: 2rem;
+}
+
+.lock-icon {
+    margin: 0 auto;
+    stroke-width: 1.5;
+}
+
+.lock-body {
+    fill: rgba(255, 255, 255, 0.12);
+    stroke: var(--text-primary);
+}
+
+.lock-top {
+    stroke: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.greeting {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
+}
+
+/* Password field */
 .password-container {
-  position: relative;
-  margin: 30px 0;
+    position: relative;
+    margin: 2rem 0;
 }
 
 .password-input {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  padding: 12px 15px;
-  width: 100%;
-  color: white;
-  font-size: 16px;
-  outline: none;
-  transition: all 0.3s ease;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--border-radius-sm);
+    transition: all var(--duration-normal) var(--ease);
+    outline: none;
+    box-shadow: var(--shadow-inner);
 }
 
 .password-input:focus {
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 2px rgba(255, 117, 140, 0.3);
+}
+
+.password-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
 }
 
 .error-message {
-  color: #ff6b6b;
-  font-size: 14px;
-  margin-top: 10px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  display: inline-block;
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: var(--error);
+    background: rgba(255, 107, 107, 0.1);
+    border-radius: var(--border-radius-sm);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--duration-fast) var(--ease-out);
 }
 
 .error-message.show {
-  opacity: 1;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
-/* ======== BUTTON STYLES ======== */
+/* Unlock button */
 .btn {
-  background: linear-gradient(to right, #ff758c, #ff7eb3);
-  border: none;
-  border-radius: 8px;
-  color: white;
-  padding: 12px 24px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
-  position: relative;
-  overflow: hidden;
-  outline: none;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all var(--duration-normal) var(--ease);
+    box-shadow: var(--shadow-md);
+    z-index: 1;
 }
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 117, 140, 0.6);
+.btn:hover,
+.btn:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
 .btn:active {
-  transform: translateY(1px);
-}
-
-/* ======== MUSIC CONTROL ======== */
-.music-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-}
-
-.music-toggle:hover {
-  opacity: 1;
-}
-
-/* ======== ANIMATIONS ======== */
-@keyframes fadeInLogin {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
     transform: translateY(0);
-  }
 }
 
-/* ======== PARTICLE BACKGROUND ======== */
-#particles-js {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: -1;
+.btn-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.3));
+    transform: translateX(-100%) skewX(-20deg);
+    transition: transform var(--duration-slow) var(--ease-out);
+    z-index: -1;
 }
 
-/* ======== RESPONSIVE DESIGN ======== */
-@media (max-width: 768px) {
-  .login-box {
-    padding: 30px 20px;
-    width: 85%;
-  }
-  
-  .password-input {
-    padding: 10px 12px;
-  }
-  
-  .btn {
-    padding: 10px 20px;
-  }
+.btn:hover .btn-wave,
+.btn:focus-visible .btn-wave {
+    transform: translateX(100%) skewX(-20deg);
 }
 
+.unlock-btn {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Music toggle */
+.music-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease);
+    z-index: 100;
+    color: var(--text-primary);
+}
+
+.music-toggle:hover,
+.music-toggle:focus-visible {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
+}
+
+.music-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* ===== 3D TILT EFFECTS ===== */
+.login-box.tilt {
+    transition: transform 0.1s var(--ease-out);
+}
+
+/* ===== MEDIA QUERIES ===== */
 @media (max-width: 480px) {
-  .login-box {
-    padding: 25px 15px;
-    width: 90%;
-  }
+    .login-box {
+        padding: 2rem 1.5rem;
+    }
+    
+    .password-container {
+        margin: 1.5rem 0;
+    }
 }
+
+/* ===== ANIMATIONS ===== */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+  }
