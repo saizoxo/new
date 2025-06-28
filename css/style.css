@@ -239,3 +239,9 @@ html, body {
   text-align: center;
   opacity: 0.7;
 }
+
+    .login-box {
+      /* ... other styles ... */
+      touch-action: none; /* <--- Make sure this line is present */
+    }
+    
