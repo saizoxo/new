@@ -22,11 +22,11 @@ window.addEventListener("load", handleAutoplay);
 if (loginBox) {
   loginBox.addEventListener("mousemove", handleTilt);
   loginBox.addEventListener("mouseleave", resetTilt);
-  loginBox.addEventListener("mouseenter", applyScale); // Call applyScale on mouseenter
+  loginBox.addEventListener("mouseenter", applyScale);
 
   loginBox.addEventListener("touchmove", handleTiltTouch);
   loginBox.addEventListener("touchend", resetTilt);
-  loginBox.addEventListener("touchstart", applyScale); // Call applyScale on touchstart
+  loginBox.addEventListener("touchstart", applyScale);
 }
 
 // ====== FUNCTIONS ======
@@ -95,50 +95,41 @@ function handleAutoplay() {
 
 // 🎯 Tilt Logic
 function computeTilt(x, y, width, height) {
-  // Calculate rotation based on mouse/touch position relative to the element's center
-  // The values -20 and 20 control the intensity of the tilt
-  const rotateX = ((y / height) - 0.5) * -20; // Invert X-axis rotation for natural feel
+  const rotateX = ((y / height) - 0.5) * -20;
   const rotateY = ((x / width) - 0.5) * 20;
   return { rotateX, rotateY };
 }
 
 // 🧠 Tilt Effect (Mouse)
 function handleTilt(e) {
-  // Ensure loginBox exists before trying to get its properties
   if (!loginBox) return;
 
   const { width, height, left, top } = loginBox.getBoundingClientRect();
-  const x = e.clientX - left; // Mouse X relative to element
-  const y = e.clientY - top;   // Mouse Y relative to element
+  const x = e.clientX - left;
+  const y = e.clientY - top;
   const { rotateX, rotateY } = computeTilt(x, y, width, height);
 
-  // Apply the transform. Scale is applied here to ensure it's always present during tilt.
   loginBox.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
 }
 
 // 🧠 Tilt Effect (Touch)
 function handleTiltTouch(e) {
-  // Prevent scrolling while touching and moving on the element
-  e.preventDefault();
+  e.preventDefault(); // Crucial for preventing default scroll behavior
 
-  // Ensure loginBox exists and there's at least one touch point
   if (!loginBox || !e.touches[0]) return;
 
   const touch = e.touches[0];
   const { width, height, left, top } = loginBox.getBoundingClientRect();
-  const x = touch.clientX - left; // Touch X relative to element
-  const y = touch.clientY - top;   // Touch Y relative to element
+  const x = touch.clientX - left;
+  const y = touch.clientY - top;
   const { rotateX, rotateY } = computeTilt(x, y, width, height);
 
-  // Apply the transform. Scale is applied here to ensure it's always present during tilt.
   loginBox.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
 }
 
 // ⚡ Apply Initial Scale on mouseenter/touchstart
 function applyScale() {
   if (loginBox) {
-    // Apply a slight scale when the mouse enters or touch starts
-    // This makes the element pop out slightly before tilting
     loginBox.style.transform = `scale(1.03)`;
   }
 }
@@ -146,7 +137,6 @@ function applyScale() {
 // 🔄 Reset Tilt and Scale on mouseleave/touchend
 function resetTilt() {
   if (loginBox) {
-    // Reset the transform to its original state (no rotation, no scale)
     loginBox.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
   }
 }
